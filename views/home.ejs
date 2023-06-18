@@ -1,0 +1,68 @@
+<div id="container">
+  <h1 > TODO App</h1> 
+    <!-- div banao uske undar input tags  -->
+    <form action="/create-list" method="POST">
+      <div class="description">
+        <label id="label-desc">DESCRIPTION</label><br>
+        <input type="text" placeholder="What do you need to do?" id="desc-input" name="task" required/>
+      </div>
+    <div id="choose">
+      <!-- This is for dropdown -->
+   <div class="category" >
+       <p id="category-text">CATEGORY</p>
+      <div id="dropdown">
+        <select name="category" id="select" required>
+          <option value="" disabled selected>Choose a category</option>
+          <option value="Personal">Personal</option>
+          <option value="Work">Work</option>
+          <option value="Cleaning">Cleaning</option>
+          <option value="Others">Others</option>
+       </select>
+     </div>
+   </div>
+      <div class="date">
+        <label for="date" id="due-date">Due Date</label>
+        <br>
+        <input id="input-date" type="text" placeholder="dd/mm/yyyy" name="date" required/>
+      </div>
+    </div>
+      <!-- This will contain add and delete btn -->
+      <div class="final-btn">
+        <button type="submit" class="task" onclick="getDropdownContent()">
+          <i class="fa-solid fa-plus plus"></i>
+          <span class="add-task">ADD TASK</span>
+        </button>
+        <!-- Delete button -->
+        <button type="button" class="delete buttonDesign colorRed"  id="deleteButton"  onclick="handleDelete()">
+          <i class="fa-solid fa-trash-can delete-logo"></i>
+          <span class="delete-task">DELETE TASKS</span>
+        </button>
+      </div>
+    </form>
+   
+    <!-- To make a display section -->
+  <div id="details">
+    <ul>
+      <%for(let i of todo_list){%>
+      <li>
+        <div id="display">  
+        <input type="checkbox" id="vehicle1" name="delechack" class="delechack" uid = <%= i._id %> />
+          <label for="vehicle1" id="label-last">
+            <div id="para1">
+            <p class="p1" id=<%= i._id %>  uid = <%= i._id %>><%= i.task%></p>
+            <div id="display-date">
+               <i class="fa-regular  fa-calendar-days calender"></i>
+               <p class="p2" id=<%= i._id + i.dueDate %>><%= i.date%></p>
+            </div> 
+          </div>
+            <div id="para-<%= i._id%>" class="para <%= i.category%>">
+             <p class="p3"><%= i.category%></p> 
+          </div>
+          </label>
+        </div>
+      </li>
+      <%}%>
+    </ul>
+  </div>
+  </div>
+   
